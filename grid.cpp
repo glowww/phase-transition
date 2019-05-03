@@ -92,8 +92,8 @@ void Grid::unionUF(pair<int,int> id1, pair<int,int> id2){
     pair<int,int> rep2 = findUF(id2);
     if (rep1 != rep2){
         // El padre será el que esté en la fila más alta
-        if (rep1.first <= rep2.first) G[id2.first][id2.second].setParent(id1); 
-        else G[id1.first][id1.second].setParent(id2); 
+        if (rep1.first <= rep2.first) G[rep2.first][rep2.second].setParent(rep1); 
+        else G[rep1.first][rep1.second].setParent(rep2); 
     }
 }
 
