@@ -6,9 +6,13 @@ using namespace std;
 
 int main() {
 
-    Grid g(20);
-    //g.percolateByNodes(.25);
+    Grid g(10);
+    g.percolateByEdges(.5);
+    //g.percolateByNodes(.5);
     g.print();
 
+	  if (g.propiedad()) cout << "se cumple" << endl;
+		else cout << "no" << endl;
+    
     return 0;
 }

@@ -1,11 +1,32 @@
 #include "node.h"
 
-Node::Node(bool r, bool b){
+Node::Node(bool r, bool b, pair<int,int> p){
     
     enabled = true;
 
     right = r;
     bottom = b;
+    parent = p;
+}
+
+bool Node::get(){
+    return enabled;
+}
+
+bool Node::getRight(){
+    return right;
+}
+
+bool Node::getBottom(){
+    return bottom;
+}
+
+pair<int,int> Node::getParent(){
+    return parent;
+}
+
+void Node::setParent(pair<int,int> p){
+    parent = p;
 }
 
 void Node::percolate(){
@@ -22,10 +43,10 @@ void Node::percolateBottomEdge(){
 
 void Node::print(){
     if(enabled){
-        if(right && bottom) cout << "A";
-        else if(right) cout << "R";
-        else if(bottom) cout << "B";
-        else cout << "X";
+        if(right && bottom) cout << "  ";
+        else if(right) cout << "_ ";
+        else if(bottom) cout << " |";
+        else cout << "_|";
     }
-    else cout << "D";
+    else cout << "X ";
 }
