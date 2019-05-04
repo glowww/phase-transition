@@ -19,8 +19,6 @@ Grid::Grid(int N){
 
 void Grid::percolateByNodes(double Q){
 
-    srand(time(NULL));
-
     for(int i = 0; i < size; i++){
         for(int j = 0; j < size; j++){
             double random = (double)rand()/((double)RAND_MAX + 1);
@@ -46,8 +44,6 @@ void Grid::percolateByNodes(double Q){
 }
 
 void Grid::percolateByEdges(double Q){
-
-    srand(time(NULL));
 
     for(int i = 0; i < size; i++){
         for(int j = 0; j < size; j++){
