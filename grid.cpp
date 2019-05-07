@@ -94,16 +94,18 @@ void Grid::unionUF(pair<int,int> id1, pair<int,int> id2){
 }
 
 bool Grid::propiedad(){
+    
+    vector<pair<int,int>> v;
+    for(int j=0; j<size; j++){
+        v.push_back(findUF(make_pair(size-1,j)));
+    }
 	
 	for(int i=0; i<size; i++){
         // Miro todos los sets que hay en la primera fila
-		pair<int,int> rep1 = findUF(make_pair(0,i)); 
+		pair<int,int> rep = findUF(make_pair(0,i)); 
 		for(int j=0; j<size; j++){
-            // Miro todos los sets que tiene la ultima fila
-			pair<int,int> rep2 = findUF(make_pair(size-1,j)); 
-
             // Si alguno de la primera y ultima coinciden, se cumple
-			if (rep1 == rep2) return true; 
+			if (rep == v[j]) return true; 
 		}
 	}
 
