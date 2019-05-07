@@ -13,7 +13,7 @@ using namespace std;
 class Grid {
 
     int size;
-    vector<vector<Node>> G;
+    vector<vector<Node> > G;
     vector<bool> emptyRow;
 
 public:

@@ -4,6 +4,11 @@
 #include <iostream>
 #include <vector>
 #include <time.h>
+#include <list>
+#include <iterator>
+#include <string>
+#include <fstream>
+#include <sstream>
 using namespace std;
 
 /*
@@ -12,17 +17,21 @@ using namespace std;
 class Graph
 {
   int size;
-  vector<vector<bool>> G;
+  vector<vector<bool> > G;
   vector<bool> emptyRow;
+
+  vector<list<int> > GraphAdj;
 
   void removeRow(int i);
   void removeColumn(int i);
 
 public:
   Graph(int N);
+  Graph(string file);
   void percolateByNodes(double Q);
   void percolateByEdges(double Q);
   void print();
+  void printGraphAdj();
 
 };
 

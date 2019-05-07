@@ -62,8 +62,9 @@ void testByNodes(){
 
 int main() {
     srand(time(NULL));
-
-    testByEdges();
+    Graph G ("test.adjlist");
+    G.printGraphAdj();
+    // testByEdges();
     //testByNodes();
     
     return 0;
