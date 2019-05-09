@@ -17,25 +17,32 @@ Graph::Graph(int N){
 }
 
 Graph::Graph(string file){
+    int number_of_graphs, sizeGraphAdj;
+
     string line;
     int fixeIndex, node;
     ifstream graphFile(file);
     if (graphFile.is_open()) {
-        for (int i = 0; i < 3; i++)
-            getline(graphFile,line);
-        while (getline(graphFile,line)) {
-            istringstream iss(line);
-            iss >> fixeIndex;
-            GraphAdj[fixeIndex];
-            list<int> l;
-            while (iss >> node) {
-                l.push_back(node);
-                // GraphAdj[fixeIndex].push_back(node);
-                // GraphAdj[node].push_back(fixeIndex);
+
+        getline(graphFile,line);
+        istringstream iss(line);
+        iss >> number_of_graphs;
+        iss >> sizeGraphAdj;
+
+        for (int j = 0; j < number_of_graphs; j++) {
+            GraphAdj = vector<vector<int> > (sizeGraphAdj, vector<int> (sizeGraphAdj, 0));
+            for (int i = 0; i < sizeGraphAdj; i++) {
+                getline(graphFile,line);
+                istringstream iss(line);
+                iss >> fixeIndex;
+                while (iss >> node) {
+                    GraphAdj[fixeIndex][node] = 1;
+                    GraphAdj[node][fixeIndex] = 1;
+                }
             }
-            GraphAdj.push_back(l);
+            getline(graphFile,line);
+            Graphs.push_back(GraphAdj);
         }
-        size = GraphAdj.size();
         graphFile.close();
     }
     else cout << "Unable to open file"; 
@@ -62,8 +69,7 @@ void Graph::percolateByNodes(double Q){
             removeRow(i);
             removeColumn(i);
         }
-    } 
-    
+    }
 }
 
 void Graph::percolateByEdges(double Q){
@@ -93,14 +99,16 @@ void Graph::print(){
 }
 
 void Graph::printGraphAdj() {
-    for (int i = 0; i < size; i++) {
-        cout << i << " -> ";
-        for (list<int>::iterator it = GraphAdj[i].begin(); it != GraphAdj[i].end(); it++)
-            cout << *it << " ";
+    for (int k = 0; k < Graphs.size(); k++) {
+        for (int i = 0; i < Graphs[k].size(); ++i) {
+            cout << i << " -> ";
+            for (int j = 0; j < Graphs[k][i].size(); ++j)
+                cout << Graphs[k][i][j] << " ";
+            cout << endl;
+        }
         cout << endl;
     }
 }
-
 
 void Graph::discardNodesGraphAdj(double Q){
     srand(time(NULL));
