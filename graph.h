@@ -4,7 +4,6 @@
 #include <iostream>
 #include <vector>
 #include <time.h>
-#include <list>
 #include <iterator>
 #include <string>
 #include <fstream>
@@ -20,8 +19,9 @@ class Graph
   vector<vector<bool> > G;
   vector<bool> emptyRow;
 
-  vector<list<int> > GraphAdj;
-
+  vector<vector<int> > GraphAdj;
+  vector<vector<vector<int> > > Graphs;
+  
   void removeRow(int i);
   void removeColumn(int i);
 
@@ -32,8 +32,6 @@ public:
   void percolateByEdges(double Q);
   void print();
   void printGraphAdj();
-  
-  void discardNodesGraphAdj(double Q);
 
 };
 
