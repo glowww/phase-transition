@@ -100,3 +100,19 @@ void Graph::printGraphAdj() {
         cout << endl;
     }
 }
+
+
+void Graph::discardNodesGraphAdj(double Q){
+    srand(time(NULL));
+    for(int i = 0; i < size; i++){
+        double random = (double)rand()/((double)RAND_MAX + 1);
+        if(random <= Q){
+             for(int j = 0; j < size; j++){
+                    GraphAdj[i][j] = 0;
+             }
+             for(int j = 0; j < size; j++){
+                    GraphAdj[j][i] = 0;
+             }
+        }
+    } 
+}
