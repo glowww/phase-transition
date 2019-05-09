@@ -53,8 +53,6 @@ void Graph::removeColumn(int i){
 
 void Graph::percolateByNodes(double Q){
 
-    srand(time(NULL));
-
     for(int i = 0; i < size; i++){
         double random = (double)rand()/((double)RAND_MAX + 1);
 
@@ -67,8 +65,6 @@ void Graph::percolateByNodes(double Q){
 }
 
 void Graph::percolateByEdges(double Q){
-
-    srand(time(NULL));
 
     for(int i = 1; i < size; i++){
         for(int j = 0; j < i; j++){
@@ -103,6 +99,8 @@ void Graph::printGraphAdj() {
 
 
 void Graph::discardNodesGraphAdj(double Q){
+    cout << Q << endl;
+    /*
     srand(time(NULL));
     for(int i = 0; i < size; i++){
         double random = (double)rand()/((double)RAND_MAX + 1);
@@ -115,4 +113,48 @@ void Graph::discardNodesGraphAdj(double Q){
              }
         }
     } 
+    */
+}
+
+bool Graph::isSafe(int v, int path[], int pos){
+    
+    if (G[path[pos-1]][v] == 0){
+        return false;
+    }
+        
+    for (int i = 0; i < pos; i++){
+       if (path[i] == v) return false;
+    }
+        
+    return true;
+}
+
+bool Graph::hamCycleRec(int path[], int pos){
+
+    if (pos == size){
+        return (G[ path[pos-1] ][ path[0] ] == 1);
+    }
+ 
+    for (int v = 1; v < size; v++){
+        
+        if (isSafe(v, path, pos)){
+            path[pos] = v;
+            if (hamCycleRec(path, pos+1)){
+                return true;
+            }
+            path[pos] = -1;
+        }
+    }
+    return false;
+}
+ 
+
+bool Graph::hamCycle(){
+    int *path = new int[size];
+    for (int i = 0; i < size; i++){
+        path[i] = -1;
+    }
+
+    path[0] = 0;
+    return hamCycleRec(path, 1);
 }
