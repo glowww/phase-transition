@@ -32,6 +32,8 @@ public:
   void percolateByEdges(double Q);
   void print();
   void printGraphAdj();
+  
+  void discardNodesGraphAdj(double Q);
 
 };
 
