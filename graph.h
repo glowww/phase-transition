@@ -35,6 +35,10 @@ public:
 
   void discardNodesGraphAdj(double Q);
 
+  bool hamCycle();
+  bool hamCycleRec(int path[], int pos);
+  bool isSafe(int v, int path[], int pos);
+
 };
 
 #endif
