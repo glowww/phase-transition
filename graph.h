@@ -33,6 +33,8 @@ public:
   void print();
   void printGraphAdj();
 
+  void discardNodesGraphAdj(double Q);
+
 };
 
 #endif
