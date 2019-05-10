@@ -29,6 +29,7 @@ Graph::Graph(string file){
         iss >> number_of_graphs;
         iss >> sizeGraphAdj;
 
+        size = sizeGraphAdj;
         for (int j = 0; j < number_of_graphs; j++) {
             GraphAdj = vector<vector<int> > (sizeGraphAdj, vector<int> (sizeGraphAdj, 0));
             for (int i = 0; i < sizeGraphAdj; i++) {
@@ -108,7 +109,6 @@ void Graph::printGraphAdj() {
 
 void Graph::discardNodesGraphAdj(double Q){
     cout << Q << endl;
-    /*
     srand(time(NULL));
     for(int i = 0; i < size; i++){
         double random = (double)rand()/((double)RAND_MAX + 1);
@@ -121,7 +121,6 @@ void Graph::discardNodesGraphAdj(double Q){
              }
         }
     } 
-    */
 }
 
 bool Graph::isSafe(int v, int path[], int pos){
