@@ -7,8 +7,6 @@ Graph::Graph(int N){
     emptyRow = v;
     deleted = v;
 
-    //vector<vector<bool>> vec(size, vector<bool> (size, true));
-
     for(int i = 0; i < size; i++){
         vector<bool> v(size, true);
         G.push_back(v);
@@ -110,17 +108,14 @@ void Graph::printGraphAdj() {
 }
 
 void Graph::discardNodesGraphAdj(double Q){
-    cout << Q << endl;
     srand(time(NULL));
     for(int i = 0; i < size; i++){
         double random = (double)rand()/((double)RAND_MAX + 1);
         if(random <= Q){
-             for(int j = 0; j < size; j++){
-                    GraphAdj[i][j] = 0;
-             }
-             for(int j = 0; j < size; j++){
-                    GraphAdj[j][i] = 0;
-             }
+            for(int j = 0; j < size; j++){
+                GraphAdj[i][j] = 0;
+                GraphAdj[j][i] = 0;
+            }
         }
     } 
 }
