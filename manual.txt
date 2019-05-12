@@ -1,4 +1,4 @@
-Random graph exercices can be found in program/c/ and program/d/.
+Random graph exercices can be found in program/c/ and program/d/ with instructions on how to use them in their respective manual.txt
 
 To generate percolated graphs:
 
