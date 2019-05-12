@@ -3,6 +3,8 @@
 
 #include <iostream>
 #include <vector>
+#include <queue>
+#include <list>
 #include <time.h>
 #include <iterator>
 #include <string>
@@ -115,6 +117,15 @@ public:
     @param Probability Q ∈ [0,1]
   */
   void discardNodesGraphAdj(double Q);
+
+  bool BFS(const vector<vector<int> >& GraphAdj);
+  void percolateBFS();
+
+  void percolate_graphs_Ham();
+
+  bool hamCycle_MAT(const vector<vector<int> > &mat);
+  bool hamCycleRec_MAT(const vector<vector<int> > &mat, int path[], int pos);
+  bool isSafe_MAT(const vector<vector<int> > &mat, int v, int path[], int pos);
 };
 
 #endif

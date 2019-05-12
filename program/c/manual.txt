@@ -1,0 +1,28 @@
+To generate random graphs and execute the percolation process defined as Hamiltonian cycle:
+
+1.		Close out.txt and list.txt. Otherwise, the program won't be able to write on the files. Do not open during the execution.
+
+2.		Execute in the command line
+		$ make
+		This will compile and generate the executable necessary.
+
+3.1.	It is required to have the following Python packages beforehand:
+			os, sys, time, networkx matplotlib.pyplot
+
+3.2		Execute in the command line
+		$ python d_Phase_transition_on_random_graphs.py 0.00 1.00 0.01 50 10 1
+		Where:
+			0.00 is the initial p, it has to be <= 1.0 and >= to 0.0
+			1.00 is the ending p, it has to be between 0 and 1 and >= to initial p
+			0.01 is the p increment, in has to be 0.X or 0.0X
+			50 is the number of graphs per p that will be generated
+			10 is the number of nodes per graph
+			1 selects the function to generate the graph. 1 = gnp_random_graph and 2 = fast_gnp_random_graph
+		This script will call another Python script X_graph_generator.py which will generate
+		the graphs and append all the adjacency lists into list.txt and write the variable p in out.txt.
+		Then it will execute the corresponding X_program.exe wich will read said list.txt and write the resulting
+		probability in out.txt
+
+4		Open list.txt and out.txt
+		In list.txt there will be every graph that has been generated in form of an adjancency list.
+		In out.txt there will be 2 columns. The first one is the value of p and the second one the percentage of percolation.

@@ -5,7 +5,8 @@ Graph::Graph(int N){
 
     vector<bool> v(size, false);
     emptyRow = v;
-    deleted = v;
+
+    //vector<vector<bool>> vec(size, vector<bool> (size, true));
 
     for(int i = 0; i < size; i++){
         vector<bool> v(size, true);
@@ -46,8 +47,6 @@ Graph::Graph(string file){
         graphFile.close();
     }
     else cout << "Unable to open file"; 
-
-    cout << "HOLA??" << endl;
 }
 
 void Graph::removeRow(int i){
@@ -68,9 +67,9 @@ void Graph::percolateByNodes(double Q){
         if(random <= Q){
             removeRow(i);
             removeColumn(i);
-            deleted[i] = 1;
         }
-    }
+    } 
+    
 }
 
 void Graph::percolateByEdges(double Q){
@@ -109,17 +108,24 @@ void Graph::printGraphAdj() {
     }
 }
 
+
+
 void Graph::discardNodesGraphAdj(double Q){
+    cout << Q << endl;
+    /*
     srand(time(NULL));
     for(int i = 0; i < size; i++){
         double random = (double)rand()/((double)RAND_MAX + 1);
         if(random <= Q){
-            for(int j = 0; j < size; j++){
-                GraphAdj[i][j] = 0;
-                GraphAdj[j][i] = 0;
-            }
+             for(int j = 0; j < size; j++){
+                    GraphAdj[i][j] = 0;
+             }
+             for(int j = 0; j < size; j++){
+                    GraphAdj[j][i] = 0;
+             }
         }
     } 
+    */
 }
 
 bool Graph::isSafe(int v, int path[], int pos){
@@ -138,13 +144,9 @@ bool Graph::isSafe(int v, int path[], int pos){
 bool Graph::hamCycleRec(int path[], int pos){
 
     if (pos == size){
-        for (int i = 0; i < size; i++){
-            if(path[i] != -1) return (G[ path[pos-1] ][ path[i] ] == 1);
-        }        
+        return (G[ path[pos-1] ][ path[0] ] == 1);
     }
-
-    if(deleted[pos] == 1) return true;
-
+ 
     for (int v = 1; v < size; v++){
         
         if (isSafe(v, path, pos)){
@@ -164,68 +166,12 @@ bool Graph::hamCycle(){
     for (int i = 0; i < size; i++){
         path[i] = -1;
     }
-    
-    int j = 0;
-    for (; j < size; j++){
-        if(deleted[j] != 1) {
-            path[j] = 0;
-            break;
-        }
-    }
 
-    if(j == size) return false;
-    else return hamCycleRec(path, j+1);
-}
-
-bool Graph::BFS(const vector<vector<int> >& GraphAdj) {
-    vector<bool> visited_nodes (GraphAdj.size(), false);
-    
-    bool starting_node_found = false;
-    int i = 0;
-    while (i < GraphAdj.size() and not starting_node_found) {
-        for (int j = 0; j < GraphAdj[i].size() and not starting_node_found; j++)
-            if (GraphAdj[i][j])
-                starting_node_found = true;
-        if (not starting_node_found)
-            i++;
-    }
-
-    if (not starting_node_found)
-            return false;
-
-    queue<int> q;
-    for (int j = 0; j < GraphAdj[i].size(); j++)
-        if (GraphAdj[i][j]) {
-            q.push(j);
-        }
-    visited_nodes[i] = true;
-
-    int next_node;
-    while(not q.empty()) {
-        next_node = q.front();
-        q.pop();
-
-        visited_nodes[next_node] = true;
-        for (int j = 0; j < GraphAdj[next_node].size(); j++)
-            if (GraphAdj[next_node][j] and not visited_nodes[j])
-                q.push(j);
-    }
-
-    for (int i = 0; i < visited_nodes.size(); i++)
-        if (not visited_nodes[i])
-            return false;
-    return true;
+    path[0] = 0;
+    return hamCycleRec(path, 1);
 }
 
 
-void Graph::percolateBFS() {
-    int percolate = 0;
-    for (int i = 0; i < Graphs.size(); i++) {
-        percolate += BFS(Graphs[i]);
-    }
-
-    cout << percolate*100/Graphs.size() << endl;
-}
 
 
 bool Graph::isSafe_MAT(const vector<vector<int> > &mat, int v, int path[], int pos){
@@ -278,3 +224,6 @@ void Graph::percolate_graphs_Ham() {
     // percolate = Graphs.size();
     cout << percolate*100/Graphs.size() << endl;
 }
+
+
+
