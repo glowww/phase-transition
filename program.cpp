@@ -70,7 +70,7 @@ void testHamiltonianCycle(bool site){
   for(double i = 0.0; i <= 1; i += 0.01){
     int times = 0;
     for(int j = 0; j < 100; j++){
-      Graph g(20);
+      Graph g(10);
 
       if(site) g.percolateByNodes(i);
       else g.percolateByEdges(i);
@@ -98,7 +98,7 @@ int main() {
     //testByEdges();
     //testByNodes();
 
-    testHamiltonianCycle(false);
+    testHamiltonianCycle(true);
     
     
     return 0;

@@ -5,6 +5,7 @@ Graph::Graph(int N){
 
     vector<bool> v(size, false);
     emptyRow = v;
+    deleted = v;
 
     //vector<vector<bool>> vec(size, vector<bool> (size, true));
 
@@ -67,6 +68,7 @@ void Graph::percolateByNodes(double Q){
         if(random <= Q){
             removeRow(i);
             removeColumn(i);
+            deleted[i] = 1;
         }
     }
 }
@@ -139,9 +141,13 @@ bool Graph::isSafe(int v, int path[], int pos){
 bool Graph::hamCycleRec(int path[], int pos){
 
     if (pos == size){
-        return (G[ path[pos-1] ][ path[0] ] == 1);
+        for (int i = 0; i < size; i++){
+            if(path[i] != -1) return (G[ path[pos-1] ][ path[i] ] == 1);
+        }        
     }
- 
+
+    if(deleted[pos] == 1) return true;
+
     for (int v = 1; v < size; v++){
         
         if (isSafe(v, path, pos)){
@@ -161,7 +167,15 @@ bool Graph::hamCycle(){
     for (int i = 0; i < size; i++){
         path[i] = -1;
     }
+    
+    int j = 0;
+    for (; j < size; j++){
+        if(deleted[j] != 1) {
+            path[j] = 0;
+            break;
+        }
+    }
 
-    path[0] = 0;
-    return hamCycleRec(path, 1);
+    if(j == size) return false;
+    else return hamCycleRec(path, j+1);
 }

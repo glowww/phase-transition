@@ -18,6 +18,7 @@ class Graph
   int size;
   vector<vector<bool> > G;
   vector<bool> emptyRow;
+  vector<bool> deleted;
 
   vector<vector<int> > GraphAdj;
   vector<vector<vector<int> > > Graphs;
