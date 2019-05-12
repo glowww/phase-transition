@@ -18,10 +18,10 @@ import matplotlib.pyplot as plt
 
 # for i in range(start_p, end_p, steps):
 i = int(sys.argv[1])
-rep_p = int(sys.argv[2]) + 1
+rep_p = int(sys.argv[2])
 size = int(sys.argv[3])
 
-open('list.txt', 'w').close()
+# open('list.txt', 'w').close()
 with open("list.txt", "a+") as file:
 	file.write(str(rep_p - 1) + " " + str(size) + '\n')
 	for j in range(1, rep_p):

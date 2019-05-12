@@ -13,6 +13,7 @@ graphType = int(sys.argv[6])
 # end_p = int(float(1.0) * 100) + 1
 # steps = int(float(0.01) * 100)
 
+open('list.txt', 'w').close()
 open('out.txt', 'w').close()
 for i in range(start_p, end_p, steps):
 	print(i)
