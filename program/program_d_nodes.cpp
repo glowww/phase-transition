@@ -16,6 +16,11 @@ int main() {
     float q;
     cin >> q;
     G.percolateByNodes(q);
+
+    cout << endl;
+    G.print();
+    cout << endl;
+    
     if (G.hamCycle()) {
         cout << "Hamiltonian cycle found" << endl;
     }
