@@ -1,7 +1,6 @@
 #include <iostream>
 #include <time.h>
 #include "graph.h"
-#include "grid.h"
 using namespace std;
 
 int main() {
@@ -16,7 +15,12 @@ int main() {
     float q;
     cin >> q;
     G.percolateByNodes(q);
-    G.print();
+    if (G.hamCycle()) {
+        cout << "Hamiltonian cycle found" << endl;
+    }
+    else {
+        cout << "Hamiltonian cycle NOT found" << endl;
+    }
 
     return 0;
 }

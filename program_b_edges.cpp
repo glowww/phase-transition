@@ -5,13 +5,13 @@ using namespace std;
 
 int main() {
     srand(time(NULL));
-    cout << "This program will percolate by edges a grid" << endl;
-    cout << "Introduce lenght of the grid (grid will have size lenght x lenght): " << endl;
+    cout << "This program will percolate a grid by edge " << endl;
+    cout << "Introduce the grid size (NxN): " << endl;
     int N;
     cin >> N;
     Grid G(N);
     
-    cout << "Introduce value of q: " << endl;
+    cout << "Introduce value of q ∈ [0,1]: " << endl;
     double q;
     cin >> q;
     G.percolateByEdges(q);
