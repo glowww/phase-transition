@@ -8,9 +8,12 @@ To generate percolated graphs:
 
 2.      To generate percolated graphs by node: $ ./program_a_nodes.exe
         To generate percolated graphs by edges: $ ./program_a_edges.exe
+
         To check if a given grid percolates by node: $ ./program_b_nodes.exe
         To check if a given grid percolates by edges: $ ./program_b_edges.exe
+
         To check if a percolated graph by node has a hamiltonian cycle: $ ./program_d_nodes.exe
         To check if a percolated graph by edges has a hamiltonian cycle: $ ./program_d_edges.exe
+        Note: Once executed this command we can also see the matrix we just treated
 
 To generate the charts content of exercices B and D: $ ./program.exe
