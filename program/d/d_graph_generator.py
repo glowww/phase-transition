@@ -1,6 +1,6 @@
 # https://networkx.github.io/documentation/networkx-2.2/reference/readwrite/generated/networkx.readwrite.adjlist.write_adjlist.html
 # https://networkx.github.io/documentation/networkx-2.0/tutorial.html
-import sys, os, commands
+import sys, os
 import networkx as nx
 import matplotlib.pyplot as plt
 
@@ -15,12 +15,13 @@ import matplotlib.pyplot as plt
 # rep_p = int(1) + 1
 # size = 10
 
+
 # for i in range(start_p, end_p, steps):
 i = int(sys.argv[1])
-rep_p = int(sys.argv[2]) + 1
+rep_p = int(sys.argv[2])
 size = int(sys.argv[3])
 
-open('list.txt', 'w').close()
+# open('list.txt', 'w').close()
 with open("list.txt", "a+") as file:
 	file.write(str(rep_p - 1) + " " + str(size) + '\n')
 	for j in range(1, rep_p):
