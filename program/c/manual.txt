@@ -10,7 +10,7 @@ To generate random graphs and execute the percolation process defined as Hamilto
 			os, sys, time, networkx matplotlib.pyplot
 
 3.2		Execute in the command line
-		$ python d_Phase_transition_on_random_graphs.py 0.00 1.00 0.01 50 100 1
+		$ python c_Phase_transition_on_random_graphs.py 0.00 1.00 0.01 50 100 1
 		Where:
 			0.00 is the initial p, it has to be <= 1.0 and >= to 0.0
 			1.00 is the ending p, it has to be between 0 and 1 and >= to initial p
